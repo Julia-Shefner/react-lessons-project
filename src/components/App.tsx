@@ -719,8 +719,93 @@
 //   );
 // }
 
-import OrderForm from "./OrderForm";
+// import OrderForm from "./OrderForm";
+
+// export default function App() {
+//   return <OrderForm />;
+// }
+
+// import { useMutation } from "@tanstack/react-query";
+// import axios from "axios";
+
+// export default function App() {
+//   const mutation = useMutation({
+//     mutationFn: async (newTodo: { title: string; completed: boolean }) => {
+//       const res = await axios.post(
+//         "https://jsonplaceholder.typicode.com/todos",
+//         newTodo,
+//       );
+//       return res.data;
+//     },
+//     onSuccess: () => {
+//       console.log("Todo added successfully");
+//     },
+//   });
+
+//   const handleCreateTodo = () => {
+//     mutation.mutate({
+//       title: "My new todo",
+//       completed: false,
+//     });
+//   };
+
+//   return (
+//     <>
+//       <button onClick={handleCreateTodo}>Create Todo</button>
+//       {mutation.isPending && <div>Adding todo...</div>}
+//       {mutation.isError && <div>An error occurred</div>}
+//       {mutation.isSuccess && <div>Todo added!</div>}
+//     </>
+//   );
+// }
+
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import axios from "axios";
+
+// export default function App() {
+//   const queryClient = useQueryClient();
+
+//   const mutation = useMutation({
+//     mutationFn: async (newTodo: { title: string; completed: boolean }) => {
+//       const res = await axios.post(
+//         "https://jsonplaceholder.typicode.com/todos",
+//         newTodo,
+//       );
+//       return res.data;
+//     },
+//     onSuccess: () => {
+//       queryClient.invalidateQueries({ queryKey: ["todos"] });
+//     },
+//   });
+//   const handleCreateTodo = () => {
+//     mutation.mutate({
+//       title: "My new todo",
+//       completed: false,
+//     });
+//   };
+//   return (
+//     <>
+//       <button onClick={handleCreateTodo}>Create Todo</button>
+//       {mutation.isPending && <div>Adding todo...</div>}
+//       {mutation.isError && <div>An error occurred</div>}
+//       {mutation.isSuccess && <div>Todo added!</div>}
+//     </>
+//   );
+// }
+
+import { useState } from "react";
 
 export default function App() {
-  return <OrderForm />;
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  return (
+    <>
+      <input type="text" value={inputValue} onChange={handleChange} />
+      <p>{inputValue}</p>
+    </>
+  );
 }
